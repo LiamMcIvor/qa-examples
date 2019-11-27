@@ -4,10 +4,10 @@ import java.util.Scanner;
 
 public class Results {
 
-	static int physicsValue;
-	static int biologyValue;
-	static int chemistryValue;
-	static int total;
+	static float physicsValue;
+	static float biologyValue;
+	static float chemistryValue;
+	static float total;
 	static float percentage;
 	
 	public static void getResult() {
@@ -24,6 +24,8 @@ public class Results {
 		System.out.println("Biology  Mark: " + biologyValue);
 		total += physicsValue + biologyValue + chemistryValue;
 		System.out.println("Total Mark: " + total);
+		
+		myValue.close();
 	}
 	
 	public static float getPercentage() {
@@ -35,24 +37,29 @@ public class Results {
 	public static void isFailOverall() {
 		if(percentage < 60) {
 			System.out.println("Unfortunately you have failed");
-		} 
+		
 		failExam();
+		}
 	}
 	
 	
 	public static void failExam() {
+		
 		String failed = "You have failed: ";
 		if((physicsValue*100/150)<60) {
 			failed += "Physics ";
-			System.out.println(failed);
-		}else if((chemistryValue*100/150)<60) {
-			failed += "Chemistry ";
-			System.out.println(failed);
-		}else if((biologyValue*100/150)<60) {
-			failed += "Biology ";
-			System.out.println(failed);
 		}
+		if((chemistryValue*100/150)<60) {
+			failed += "Chemistry ";
+		}
+		if((biologyValue*100/150)<60) {
+			failed += "Biology ";
+		}
+		
+		System.out.println(failed);
+		
 	}
+	
 	public static void main(String[] args) {
 		getResult();
 		getPercentage();
